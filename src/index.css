@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: sans-serif;
+  font-size: 25px;
+}
+
+.game-container {
+  width: 1000px;
+  height: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.question {
+  width: 50%;
+  height: 100%;
+  background-image: url("https://previews.123rf.com/images/aomarch/aomarch1301/aomarch130100079/17137677-ilustración-vectorial-de-una-colección-de-aves-de-colores.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.question-title {
+  width: 50%;
+  margin: 30% auto;
+}
+
+.question-title h2 {
+  background-color: black;
+  color: white;
+  display: inline;
+  font-size: 50px;
+  text-align: center;
+  padding: 4px;
+  box-shadow: -7px 0px black, 7px 0px black;
+}
+
+.revealed-answer {
+  color: #cc5500;
+}
+
+.answer {
+  width: 50%;
+  height: 100%;
+  background-color: #efefef;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.answer-list {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.answer-list h3 {
+  color: black;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+}
+
+.answer-option {
+  padding: 50px 0px 0px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+}
+
+.answer-option:hover {
+  color: #cc5500;
+}
+
+.answer h4 {
+  text-align: center;
+  color: gray;
+}
