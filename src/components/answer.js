@@ -10,7 +10,7 @@ function Answer(props) {
           name="radioGroup"
           id={props.content}
           value={props.content}
-          onChange={props.onAnswerSelected}
+          onClick={props.onAnswerSelected}
         />
         <label className="radioCustomLabel" htmlFor={props.content}>
           {props.content}

@@ -14,7 +14,10 @@ function Quiz(props) {
               return <Answer content={option} onAnswerSelected={props.onAnswerSelected} />
             })}
           </div>
-          <h4>Next <i class="fas fa-angle-right fa-x2" onClick={props.setNextQuestion}></i></h4>
+          <div className="navigation">
+            <h4 className="previous-question" onClick={props.onPreviousQuestion}><i className="fas fa-angle-left"></i> Back</h4>
+            <h4 className="next-question" onClick={props.onNextQuestion}>Next <i className="fas fa-angle-right"></i></h4>
+          </div>
         </div>
       </div>
     )

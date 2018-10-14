@@ -30,18 +30,36 @@ class App extends React.Component {
     }
   }
 
-  setNextQuesion = () => {
-    const counter = this.state.counter + 1
-    const questionId = this.state.questionId + 1
-    const shuffle = require('shuffle-array'),
-      answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
-    this.setState({
-      counter: counter,
-      question: quizQuestions[counter].bird,
-      revealedAnswer: "_______",
-      answer: quizQuestions[counter].answer,
-      answerOptions: shuffle(answerOptions)
-    })
+  setNextQuestion = () => {
+    if (this.state.counter < quizQuestions.length - 1) {
+      const counter = this.state.counter + 1
+      const questionId = this.state.questionId + 1
+      const shuffle = require('shuffle-array'),
+        answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
+      this.setState({
+        counter: counter,
+        question: quizQuestions[counter].bird,
+        revealedAnswer: "_______",
+        answer: quizQuestions[counter].answer,
+        answerOptions: shuffle(answerOptions)
+      })
+    }
+  }
+
+  setPreviousQuestion = () => {
+    if (this.state.counter > 0) {
+      const counter = this.state.counter - 1
+      const questionId = this.state.questionId - 1
+      const shuffle = require('shuffle-array'),
+        answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
+      this.setState({
+        counter: counter,
+        question: quizQuestions[counter].bird,
+        revealedAnswer: "_______",
+        answer: quizQuestions[counter].answer,
+        answerOptions: shuffle(answerOptions)
+      })
+    }
   }
 
   render() {
@@ -51,7 +69,8 @@ class App extends React.Component {
         bird={this.state.question}
         answerOptions={this.state.answerOptions}
         onAnswerSelected={this.handleAnswerSelected}
-        onClick={this.setNextQuesion} />
+        onPreviousQuestion={this.setPreviousQuestion}
+        onNextQuestion={this.setNextQuestion} />
     )
   }
 
