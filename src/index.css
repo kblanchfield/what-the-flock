@@ -106,3 +106,31 @@ input[type="radio"] {
 .previous-question, .next-question {
   cursor: pointer;
 }
+
+@media (min-width: 601px) and (max-width: 1000px) {
+  .game-container {
+    width: 500px;
+    height: auto;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 0px auto;
+  }
+
+  .question, .answer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    width: 100%;
+    height: auto;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 0px auto;
+  }
+
+  .question, .answer {
+    width: 100%;
+  }
+}
