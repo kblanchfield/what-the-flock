@@ -10,8 +10,8 @@ function Quiz(props) {
         </div>
         <div className="answer">
           <div className="answer-list">
-            {props.answerOptions.map((option) => {
-              return <Answer content={option} onAnswerSelected={props.onAnswerSelected} />
+            {props.answerOptions.map((option, index) => {
+              return <Answer key={index} content={option} onAnswerSelected={props.onAnswerSelected} />
             })}
           </div>
           <div className="navigation">

@@ -26,6 +26,8 @@ class App extends React.Component {
     if (this.state.answer === event.target.value) {
       this.setState({
         revealedAnswer: this.state.answer
+      }, () => {
+        setTimeout(() => {this.setNextQuestion()}, 1500)
       })
     }
   }
@@ -33,7 +35,6 @@ class App extends React.Component {
   setNextQuestion = () => {
     if (this.state.counter < quizQuestions.length - 1) {
       const counter = this.state.counter + 1
-      const questionId = this.state.questionId + 1
       const shuffle = require('shuffle-array'),
         answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
       this.setState({
@@ -49,7 +50,6 @@ class App extends React.Component {
   setPreviousQuestion = () => {
     if (this.state.counter > 0) {
       const counter = this.state.counter - 1
-      const questionId = this.state.questionId - 1
       const shuffle = require('shuffle-array'),
         answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
       this.setState({
