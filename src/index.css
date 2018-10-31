@@ -133,6 +133,16 @@ input[type="radio"] {
     height: 50vh;
   }
 
+  .question-title {
+    margin: 25% auto;
+  }
+
+  .question-title h2 {
+    font-size: 35px;
+    padding: 4px;
+    box-shadow: -7px 0px black, 7px 0px black;
+  }
+
   .answer-list {
     width: 50%;
     margin: 0px auto;
