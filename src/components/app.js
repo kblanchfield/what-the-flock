@@ -13,7 +13,8 @@ class App extends React.Component {
     if (event.target.value === quizQuestions[this.state.counter].answer) {
       this.setState({
         revealedAnswer: quizQuestions[this.state.counter].answer
-      }, () => this.setNextQuestion()
+      }, () =>
+        setTimeout(() => {this.setNextQuestion()}, 1500)
       )
     }
   }
