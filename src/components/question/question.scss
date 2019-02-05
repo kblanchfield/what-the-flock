@@ -1,0 +1,46 @@
+.question {
+  width: 50%;
+  height: 100%;
+  background-image: url("https://previews.123rf.com/images/aomarch/aomarch1301/aomarch130100079/17137677-ilustración-vectorial-de-una-colección-de-aves-de-colores.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.question-title {
+  width: 75%;
+  margin: 25% auto;
+  line-height: 1.3;
+}
+
+.question-title h2 {
+  background-color: black;
+  color: white;
+  display: inline;
+  font-size: 45px;
+  text-align: center;
+  padding: 4px;
+  box-shadow: -7px 0px black, 7px 0px black;
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+  .question {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .question {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .question-title {
+    margin: 25% auto;
+  }
+
+  .question-title h2 {
+    font-size: 35px;
+    padding: 4px;
+    box-shadow: -7px 0px black, 7px 0px black;
+  }
+}

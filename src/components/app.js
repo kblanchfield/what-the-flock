@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { quizQuestions } from "../data"
-import Quiz from "./quiz"
+import Quiz from "./quiz/quiz"
 
 class App extends React.Component {
 
@@ -22,7 +23,7 @@ class App extends React.Component {
     })
   }
 
-  handleAnswerSelected = (event) => {
+  handleAnswerSelected = event => {
     if (this.state.answer === event.target.value) {
       this.setState({
         revealedAnswer: this.state.answer

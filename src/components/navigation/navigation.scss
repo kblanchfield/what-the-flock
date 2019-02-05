@@ -1,0 +1,17 @@
+.navigation {
+  width: 100%;
+  display: inline;
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.navigation h4 {
+  display: inline;
+  padding: 0px 20px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.previous-question, .next-question {
+  cursor: pointer;
+}
