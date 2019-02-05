@@ -3,17 +3,22 @@ import PropTypes from "prop-types"
 import Question from "../question/question"
 import Answer from "../answer/answer"
 import Navigation from "../navigation/navigation"
+import { quizQuestions } from "../../data"
 import "./quiz.scss"
 
-const Quiz = ({ revealedAnswer, bird, answerOptions, onAnswerSelected, onPreviousQuestion, onNextQuestion }) => {
+const Quiz = ({ revealedAnswer, counter, onAnswerSelected, onPreviousQuestion, onNextQuestion }) => {
+
+  const shuffle = require("shuffle-array"),
+    answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
+
     return (
       <div className="game-container">
         <div className="question">
-          <Question revealedAnswer={revealedAnswer} bird={bird} />
+          <Question revealedAnswer={revealedAnswer} bird={quizQuestions[counter].bird} />
         </div>
         <div className="answer">
           <div className="answer-list">
-            {answerOptions.map((option, index) => {
+            {shuffle(answerOptions).map((option, index) => {
               return <Answer key={index} content={option} onAnswerSelected={onAnswerSelected} />
             })}
           </div>
@@ -23,10 +28,9 @@ const Quiz = ({ revealedAnswer, bird, answerOptions, onAnswerSelected, onPreviou
     )
 }
 
-Quiz.PropTypes = {
+Quiz.propTypes = {
   revealedAnswer: PropTypes.string.isRequired,
-  bird: PropTypes.string.isRequired,
-  answerOptions: PropTypes.array.isRequired,
+  counter: PropTypes.number.isRequired,
   onAnswerSelected: PropTypes.func.isRequired,
   onPreviousQuestion: PropTypes.func.isRequired,
   onNextQuestion: PropTypes.func.isRequired
