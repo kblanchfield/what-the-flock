@@ -6,10 +6,8 @@ import Navigation from "../navigation/navigation"
 import { quizQuestions } from "../../data"
 import "./quiz.scss"
 
-const Quiz = ({ revealedAnswer, counter, onAnswerSelected, onPreviousQuestion, onNextQuestion }) => {
 
-  const shuffle = require("shuffle-array"),
-    answerOptions = [...quizQuestions[counter].answerOptions, quizQuestions[counter].answer]
+const Quiz = ({ counter, revealedAnswer, answerOptions, onAnswerSelected, onNextQuestion, onPreviousQuestion }) => {
 
     return (
       <div className="game-container">
@@ -18,7 +16,7 @@ const Quiz = ({ revealedAnswer, counter, onAnswerSelected, onPreviousQuestion, o
         </div>
         <div className="answer">
           <div className="answer-list">
-            {shuffle(answerOptions).map((option, index) => {
+            {answerOptions.map((option, index) => {
               return <Answer key={index} content={option} onAnswerSelected={onAnswerSelected} />
             })}
           </div>
@@ -26,11 +24,13 @@ const Quiz = ({ revealedAnswer, counter, onAnswerSelected, onPreviousQuestion, o
         </div>
       </div>
     )
+
 }
 
 Quiz.propTypes = {
   revealedAnswer: PropTypes.string.isRequired,
   counter: PropTypes.number.isRequired,
+  answerOptions: PropTypes.array.isRequired,
   onAnswerSelected: PropTypes.func.isRequired,
   onPreviousQuestion: PropTypes.func.isRequired,
   onNextQuestion: PropTypes.func.isRequired
