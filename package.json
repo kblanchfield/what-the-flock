@@ -4,16 +4,14 @@
   "private": true,
   "homepage": "https://kblanchfield.github.io/bird-game",
   "dependencies": {
-    "@types/react": "^16.8.3",
-    "@types/react-dom": "^16.8.2",
     "eslint-config-technigo": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "gh-pages": "^2.0.1",
-    "node-sass": "^4.9.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "2.0.3",
-    "shuffle-array": "^1.0.1"
+    "shuffle-array": "^1.0.1",
+    "node-sass": "^4.9.4"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -28,10 +26,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "source-map-loader": "^0.2.4",
-    "typescript": "^3.3.3"
-  }
+  ]
 }
