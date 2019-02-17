@@ -22,6 +22,8 @@ class App extends React.Component {
     }
   }
 
+  
+
   setNextQuestion = () => {
     if (this.state.counter < quizQuestions.length - 1) {
       const counter = this.state.counter + 1
