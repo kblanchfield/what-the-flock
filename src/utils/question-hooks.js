@@ -6,19 +6,17 @@ const useQuestionHandler = () => {
 
     const updateQuestionIndex = useCallback(index => {
         setQuestionIndex(index)
-        console.log("set question index")
     }, [])
 
-    const updatequestionAnsweredCorrectly = useCallback(bool => {
+    const updateQuestionAnsweredCorrectly = useCallback(bool => {
         setQuestionAnsweredCorrectly(bool)
-        console.log("set correct answer")
     }, [])
 
     return {
         questionIndex,
         questionAnsweredCorrectly,
         updateQuestionIndex,
-        updatequestionAnsweredCorrectly
+        updateQuestionAnsweredCorrectly
     }
 }
 

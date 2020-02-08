@@ -5,16 +5,16 @@ export const questionContext = createContext({
     questionIndex: 0,
     questionAnsweredCorrectly: false,
     updateQuestionIndex: () => {},
-    updatequestionAnsweredCorrectly: () => {}
+    updateQuestionAnsweredCorrectly: () => {}
 })
 
 const { Provider } = questionContext
 
 const QuestionProvider = ({ children }) => {
-    const { questionIndex, questionAnsweredCorrectly, updateQuestionIndex, updatequestionAnsweredCorrectly } = useQuestionHandler()
+    const { questionIndex, questionAnsweredCorrectly, updateQuestionIndex, updateQuestionAnsweredCorrectly } = useQuestionHandler()
 
     return (
-        <Provider value={{questionIndex, questionAnsweredCorrectly, updateQuestionIndex, updatequestionAnsweredCorrectly}}>
+        <Provider value={{questionIndex, questionAnsweredCorrectly, updateQuestionIndex, updateQuestionAnsweredCorrectly}}>
             {children}
         </Provider>
     )

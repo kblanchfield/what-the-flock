@@ -6,11 +6,11 @@ import "./answer.scss"
 
 const Answer = ({ answerOption }) => {
 
-  const { questionIndex, updateQuestionIndex, updatequestionAnsweredCorrectly } = useContext(questionContext)
+  const { questionIndex, updateQuestionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
 
   const onAnswerSelected = async (event) => {
     if (event.target.value === quizQuestions[questionIndex].answer) {
-      updatequestionAnsweredCorrectly(true)
+      updateQuestionAnsweredCorrectly(true)
       await new Promise(resolve => {
         setTimeout(() => { resolve() }, 1500)
       })

@@ -10,7 +10,7 @@ import "./quiz.scss"
 
 const Quiz = () => {
 
-  const { questionIndex, updatequestionAnsweredCorrectly } = useContext(questionContext)
+  const { questionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
 
   const [answerOptions, setAnswerOptions] = useState([...quizQuestions[0].answerOptions, quizQuestions[0].answer])
 
@@ -26,7 +26,7 @@ const Quiz = () => {
         console.log("Error shuffling answer options: ", e)
       }
       setAnswerOptions(shuffledAnswerOptions)
-      updatequestionAnsweredCorrectly(false)
+      updateQuestionAnsweredCorrectly(false)
     }
   }, [questionIndex])
 
