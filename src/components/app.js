@@ -1,10 +1,13 @@
 import React from "react"
 import Quiz from "./quiz/quiz"
+import QuestionContextProvider from "../contexts/question-context"
 
 const App = () => {
 
   return (
-    <Quiz />
+    <QuestionContextProvider>
+      <Quiz />
+    </QuestionContextProvider>
   )
 }
 
