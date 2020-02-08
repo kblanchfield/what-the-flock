@@ -1,18 +1,57 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { useState, useEffect } from "react"
 import Question from "../question/question"
 import Answer from "../answer/answer"
 import Navigation from "../navigation/navigation"
 import { quizQuestions } from "../../data"
+import { shuffle } from "../../utils/shuffle"
 import "./quiz.scss"
 
 
-const Quiz = ({ counter, revealedAnswer, answerOptions, onAnswerSelected, onNextQuestion, onPreviousQuestion }) => {
+const Quiz = () => {
+
+  const [questionIndex, setQuestionIndex] = useState(0)
+  const [revealedAnswer, setRevealedAnswer] = useState('_______')
+  const [answerOptions, setAnswerOptions] = useState([...quizQuestions[0].answerOptions, quizQuestions[0].answer])
+
+  const onAnswerSelected = async (event) => {
+    if (event.target.value === quizQuestions[questionIndex].answer) {
+      setRevealedAnswer(quizQuestions[questionIndex].answer)
+      await new Promise(resolve => {
+        setTimeout(() => { resolve() }, 1500)
+      })
+      setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
+    }
+  }
+
+  useEffect(() => {
+    setRevealedAnswer('_______')
+    let shuffledAnswerOptions = []
+    try {
+      shuffledAnswerOptions = shuffle([...quizQuestions[questionIndex].answerOptions, quizQuestions[questionIndex].answer])
+    }
+    catch (e) {
+      console.log("Error shuffling answer options: ", e)
+    }
+    setAnswerOptions(shuffledAnswerOptions)
+  }, [questionIndex])
+
+
+  const onNextQuestion = () => {
+    if (questionIndex < quizQuestions.length - 1) {
+      setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
+    }
+  }
+
+  const onPreviousQuestion = () => {
+    if (questionIndex > 0) {
+      setQuestionIndex(prevQuestionIndex => prevQuestionIndex - 1)
+    }
+  }
 
     return (
       <div className="game-container">
         <div className="question">
-          <Question revealedAnswer={revealedAnswer} bird={quizQuestions[counter].bird} />
+          <Question revealedAnswer={revealedAnswer} bird={quizQuestions[questionIndex].bird} />
         </div>
         <div className="answer">
           <div className="answer-list">
@@ -24,17 +63,6 @@ const Quiz = ({ counter, revealedAnswer, answerOptions, onAnswerSelected, onNext
         </div>
       </div>
     )
-
 }
-
-Quiz.propTypes = {
-  revealedAnswer: PropTypes.string.isRequired,
-  counter: PropTypes.number.isRequired,
-  answerOptions: PropTypes.array.isRequired,
-  onAnswerSelected: PropTypes.func.isRequired,
-  onPreviousQuestion: PropTypes.func.isRequired,
-  onNextQuestion: PropTypes.func.isRequired
-}
-
 
 export default Quiz
