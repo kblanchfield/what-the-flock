@@ -4,16 +4,18 @@
   "private": true,
   "homepage": "https://kblanchfield.github.io/bird-game",
   "dependencies": {
-    "eslint-plugin-jsx-a11y": "^6.4.1",
     "mongodb": "^3.3.3",
     "node-sass": "^4.14.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-scripts": "3.2.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start:lambda": "netlify-lambda serve functions",
+    "build": "react-scripts build",
+    "build:lambda": "netlify-lambda build functions",
+    "prod": "npm run build; npm run build:lambda"
   },
   "browserslist": [
     ">0.2%",
@@ -22,6 +24,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^2.5.1"
+    "netlify-lambda": "^1.4.5"
   }
 }

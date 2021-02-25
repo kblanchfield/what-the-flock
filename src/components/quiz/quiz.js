@@ -30,7 +30,11 @@ const Quiz = () => {
   }, [])
 
   useEffect(() => {
-    if (questionIndex !== 0 && questionIndex === quizQuestions.length) {
+    if (quizQuestions.length === 0) {
+      return
+    }
+
+    if (questionIndex === quizQuestions.length) {
       alert("Game over.")
       return
     }
