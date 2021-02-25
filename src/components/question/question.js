@@ -1,28 +1,19 @@
 import React, { useState, useEffect, useContext } from "react"
 import { questionContext } from "../../contexts/question-context"
-import { quizQuestions } from "../../data"
 import "./question.scss"
 
-const Question = () => {
+const Question = ({ bird, answer }) => {
 
-  const { questionIndex, questionAnsweredCorrectly } = useContext(questionContext)
-
-  const [bird, setBird] = useState('')
-
-  useEffect(() => {
-    if (questionIndex < quizQuestions.length) {
-      setRevealedAnswer('_______')
-      setBird(quizQuestions[questionIndex].bird)
-    }
-  }, [questionIndex])
-
-  const [revealedAnswer, setRevealedAnswer] = useState('')
+  const { questionAnsweredCorrectly } = useContext(questionContext)
+  const [revealedAnswer, setRevealedAnswer] = useState('______')
 
   useEffect(() => {
     if (questionAnsweredCorrectly === true) {
-      setRevealedAnswer(quizQuestions[questionIndex].answer)
+      setRevealedAnswer(answer)
+    } else {
+      setRevealedAnswer('______')
     }
-  }, [questionAnsweredCorrectly])
+  }, [answer, questionAnsweredCorrectly])
 
   return (
     <div className="question-title">

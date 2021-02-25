@@ -1,15 +1,14 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { questionContext } from "../../contexts/question-context"
-import { quizQuestions } from "../../data"
 import "./answer.scss"
 
-const Answer = ({ answerOption }) => {
+const Answer = ({ correct, answerOption }) => {
 
   const { questionIndex, updateQuestionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
 
-  const onAnswerSelected = async (event) => {
-    if (event.target.value === quizQuestions[questionIndex].answer) {
+  const onAnswerSelected = async () => {
+    if (correct) {
       updateQuestionAnsweredCorrectly(true)
       await new Promise(resolve => {
         setTimeout(() => { resolve() }, 1500)
@@ -36,7 +35,7 @@ const Answer = ({ answerOption }) => {
 }
 
 Answer.propTypes = {
-   content: PropTypes.string.isRequired
+  answerOption: PropTypes.string.isRequired
  }
 
 export default Answer

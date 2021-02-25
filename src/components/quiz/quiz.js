@@ -3,45 +3,62 @@ import Question from "../question/question"
 import Answer from "../answer/answer"
 import Navigation from "../navigation/navigation"
 import { questionContext } from "../../contexts/question-context"
-import { quizQuestions } from "../../data"
+import { fetchQuestions } from "../../service/bird-questions"
 import { shuffle } from "../../utils/shuffle"
 import "./quiz.scss"
 
 
 const Quiz = () => {
 
-  const { questionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
-
-  const [answerOptions, setAnswerOptions] = useState([...quizQuestions[0].answerOptions, quizQuestions[0].answer])
+  const { questionIndex } = useContext(questionContext)
+  
+  const [quizQuestions, setQuizQuestions] = useState([])
+  const [bird, setBird] = useState('')
+  const [answer, setAnswer] = useState('')
+  const [answerOptions, setAnswerOptions] = useState([])
 
   useEffect(() => {
-    if (questionIndex === quizQuestions.length) {
-      alert("Game over.")
-    } else {
-      let shuffledAnswerOptions = []
+    const getQuestions = async () => {
       try {
-        shuffledAnswerOptions = shuffle([...quizQuestions[questionIndex].answerOptions, quizQuestions[questionIndex].answer])
+        const quizQuestions = await fetchQuestions()
+        setQuizQuestions(quizQuestions)
+      } catch (err) {
+        console.log('Error setting quiz questions: ', err)
       }
-      catch (e) {
-        console.log("Error shuffling answer options: ", e)
-      }
-      setAnswerOptions(shuffledAnswerOptions)
-      updateQuestionAnsweredCorrectly(false)
     }
-  }, [questionIndex])
+    getQuestions()
+  }, [])
+
+  useEffect(() => {
+    if (questionIndex !== 0 && questionIndex === quizQuestions.length) {
+      alert("Game over.")
+      return
+    }
+
+    let shuffledAnswerOptions = []
+    try {
+      shuffledAnswerOptions = shuffle([...quizQuestions[questionIndex]?.answerOptions, quizQuestions[questionIndex]?.answer])
+    }
+    catch (e) {
+      console.log("Error shuffling answer options: ", e)
+    }
+    setAnswerOptions(shuffledAnswerOptions)
+    setBird(quizQuestions[questionIndex]?.bird)
+    setAnswer(quizQuestions[questionIndex]?.answer)
+  }, [quizQuestions, questionIndex])
 
   return (
     <div className="game-container">
       <div className="question">
-        <Question />
+        <Question bird={bird} answer={answer} />
       </div>
       <div className="answer">
         <div className="answer-list">
           {answerOptions.map(answerOption => {
-            return <Answer key={answerOption} answerOption={answerOption} />
+            return <Answer key={answerOption} correct={answerOption === answer} answerOption={answerOption} />
           })}
         </div>
-        <Navigation />
+        <Navigation numQuestions={quizQuestions.length} />
       </div>
     </div>
   )
