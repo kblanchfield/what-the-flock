@@ -4,20 +4,36 @@ import "./question.scss"
 
 const Question = ({ bird, answer }) => {
 
-  const { questionAnsweredCorrectly } = useContext(questionContext)
-  const [revealedAnswer, setRevealedAnswer] = useState('______')
+  const emptyAnswer = '______'
+  const { questionIndex, questionAnsweredCorrectly } = useContext(questionContext)
+  const [revealedAnswer, setRevealedAnswer] = useState(emptyAnswer)
+  const [definiteArticle, setDefiniteArticle] = useState('A')
+
+  useEffect(() => {
+    setDefiniteArticle('A')
+  }, [questionIndex])
 
   useEffect(() => {
     if (questionAnsweredCorrectly === true) {
+      const correctDefiniteArticle = getDefiniteArticle(answer)
+      setDefiniteArticle(correctDefiniteArticle)
       setRevealedAnswer(answer)
     } else {
-      setRevealedAnswer('______')
+      setRevealedAnswer(emptyAnswer)
     }
   }, [answer, questionAnsweredCorrectly])
 
+  const getDefiniteArticle = (answer) => {
+    const letters = ['a', 'e', 'i', 'o', 'u']
+    if (letters.includes(answer[0])) {
+      return 'An'
+    }
+    return "A"
+  }
+
   return (
     <div className="question-title">
-      <h2>A <span className="revealed-answer">{revealedAnswer}</span></h2>
+      <h2>{definiteArticle} <span className="revealed-answer">{revealedAnswer}</span></h2>
       <br />
       <h2>of {bird}</h2>
     </div>
