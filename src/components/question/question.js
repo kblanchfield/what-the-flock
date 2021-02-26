@@ -17,11 +17,9 @@ const Question = ({ bird, answer }) => {
 
   return (
     <div className="question-title">
-      <h2>
-        A <span className="revealed-answer">{revealedAnswer}</span>
-        <br />
-        of {bird}
-      </h2>
+      <h2>A <span className="revealed-answer">{revealedAnswer}</span></h2>
+      <br />
+      <h2>of {bird}</h2>
     </div>
   )
 }

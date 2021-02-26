@@ -13,6 +13,7 @@ const Answer = ({ correct, answerOption }) => {
       await new Promise(resolve => {
         setTimeout(() => { resolve() }, 1500)
       })
+      updateQuestionAnsweredCorrectly(false)
       updateQuestionIndex(questionIndex + 1)
     }
   }
@@ -28,7 +29,7 @@ const Answer = ({ correct, answerOption }) => {
           onClick={onAnswerSelected}
         />
         <label className="radioCustomLabel" htmlFor={answerOption}>
-          {answerOption}
+          <h2>{answerOption}</h2>
         </label>
       </div>
   )

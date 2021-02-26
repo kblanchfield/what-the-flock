@@ -1,24 +1,26 @@
 .revealed-answer {
-  color: #cc5500;
+  color: #65B3EF;
+  z-index: 10;
 }
 
 .answer {
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-color: #efefef;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   overflow: hidden;
 }
 
 .answer-list {
+  height: 50%;
   width: 50%;
-  margin: 60px auto 0px auto;
+  margin: auto;
 }
 
 .answer-list h3 {
-  color: black;
+  color: 292626;
 }
 
 input[type="radio"] {
@@ -26,15 +28,16 @@ input[type="radio"] {
 }
 
 .answer-option {
-  padding: 25px 0px 25px 0px;
+  padding: 15px 0px 15px 0px;
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
+  letter-spacing: 1.5px;
 }
 
 .answer-option:hover {
-  color: #cc5500;
+  color: #65B3EF;
 }
 
 .answer h4 {
@@ -44,22 +47,30 @@ input[type="radio"] {
 
 @media (min-width: 601px) and (max-width: 1000px) {
   .answer {
+    height: 100%;
     width: 100%;
+  }
+
+  .answer-list {
+    height: 100%;
+    width: 50%;
+    margin: 0px auto;
   }
 }
 
 @media (max-width: 600px) {
   .answer {
     width: 100%;
-    height: 50vh;
+    height: 100%;
   }
 
   .answer-list {
+    height: 100%;
     width: 50%;
     margin: 0px auto;
   }
 
   .answer-option:hover {
-    color: black;
+    color: 292626;
   }
 }
