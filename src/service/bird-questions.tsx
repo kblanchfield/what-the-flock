@@ -1,7 +1,8 @@
 import { apiRequest } from './fetch'
+import { IQuestion } from '../models'
 
-const mapQuestions = (questions) => {
-    return questions.map((question) => {
+const mapQuestions = (questions: any[]): IQuestion[] => {
+    return questions.map((question: any): IQuestion => {
         return {
             answer: question.answer,
             answerOptions: question.answer_options,
@@ -10,7 +11,7 @@ const mapQuestions = (questions) => {
     })
 }
 
-export const fetchQuestions = async () => {
+export const fetchQuestions = async (): Promise<IQuestion[]> => {
     try {
         const response = await apiRequest(
             "/.netlify/functions/bird-questions/",

@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react"
 import { questionContext } from "../../contexts/question-context"
 import "./question.scss"
 
-const Question = ({ bird, answer }) => {
+const Question = ({ bird, answer }: { bird: string, answer: string}) => {
 
   const emptyAnswer = '______'
   const { questionIndex, questionAnsweredCorrectly } = useContext(questionContext)
-  const [revealedAnswer, setRevealedAnswer] = useState(emptyAnswer)
-  const [definiteArticle, setDefiniteArticle] = useState('A')
+  const [revealedAnswer, setRevealedAnswer] = useState<string>(emptyAnswer)
+  const [definiteArticle, setDefiniteArticle] = useState<string>('A')
 
   useEffect(() => {
     setDefiniteArticle('A')
@@ -23,7 +23,7 @@ const Question = ({ bird, answer }) => {
     }
   }, [answer, questionAnsweredCorrectly])
 
-  const getDefiniteArticle = (answer) => {
+  const getDefiniteArticle = (answer: string): string => {
     const letters = ['a', 'e', 'i', 'o', 'u']
     if (letters.includes(answer[0])) {
       return 'An'

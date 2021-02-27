@@ -1,11 +1,8 @@
-const getRandomInt = (max) => {
+const getRandomInt = (max: number): number => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-export const shuffle = array => {
-	if (!Array.isArray(array)) {
-		throw new Error(`Can't shuffle something that is not an array.`)
-	}
+export const shuffle = (array: string[]): string[] => {
 	const remainingArray = [...array]
 	const shuffledArray = []
 	while (shuffledArray.length < array.length) {

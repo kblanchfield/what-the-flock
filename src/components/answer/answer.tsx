@@ -3,16 +3,23 @@ import PropTypes from "prop-types"
 import { questionContext } from "../../contexts/question-context"
 import "./answer.scss"
 
-const Answer = ({ correct, answerOption }) => {
+const Answer = ({ correct, answerOption, numQuestions }: { 
+  correct: boolean,
+  answerOption: string,
+  numQuestions: number
+}) => {
 
   const { questionIndex, updateQuestionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
 
   const onAnswerSelected = async () => {
     if (correct) {
       updateQuestionAnsweredCorrectly(true)
-      await new Promise(resolve => {
+      await new Promise<void>((resolve) => {
         setTimeout(() => { resolve() }, 1500)
       })
+    }
+
+    if (questionIndex !== numQuestions - 1) {
       updateQuestionAnsweredCorrectly(false)
       updateQuestionIndex(questionIndex + 1)
     }

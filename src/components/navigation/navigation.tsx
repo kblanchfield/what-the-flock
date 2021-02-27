@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { questionContext } from "../../contexts/question-context"
 import "./navigation.scss"
 
-const Navigation = ({ numQuestions }) => {
+const Navigation = ({ numQuestions }: { numQuestions: number }) => {
 
   const { questionIndex, updateQuestionIndex } = useContext(questionContext)
 

@@ -6,16 +6,17 @@ import { questionContext } from "../../contexts/question-context"
 import { fetchQuestions } from "../../service/bird-questions"
 import { shuffle } from "../../utils/shuffle"
 import "./quiz.scss"
+import { IQuestion } from "../../models"
 
 
 const Quiz = () => {
 
   const { questionIndex } = useContext(questionContext)
   
-  const [quizQuestions, setQuizQuestions] = useState([])
-  const [bird, setBird] = useState('')
-  const [answer, setAnswer] = useState('')
-  const [answerOptions, setAnswerOptions] = useState([])
+  const [quizQuestions, setQuizQuestions] = useState<IQuestion[]>([])
+  const [bird, setBird] = useState<string>('')
+  const [answer, setAnswer] = useState<string>('')
+  const [answerOptions, setAnswerOptions] = useState<string[]>([])
 
   useEffect(() => {
     const getQuestions = async () => {
@@ -39,14 +40,12 @@ const Quiz = () => {
       return
     }
 
-    let shuffledAnswerOptions = []
     try {
-      shuffledAnswerOptions = shuffle([...quizQuestions[questionIndex]?.answerOptions, quizQuestions[questionIndex]?.answer])
+      const shuffledAnswerOptions = shuffle([...quizQuestions[questionIndex]?.answerOptions, quizQuestions[questionIndex]?.answer])
+      setAnswerOptions(shuffledAnswerOptions)
+    } catch (err) {
+      console.log('Error shuffling answer options: ', err)
     }
-    catch (e) {
-      console.log("Error shuffling answer options: ", e)
-    }
-    setAnswerOptions(shuffledAnswerOptions)
     setBird(quizQuestions[questionIndex]?.bird)
     setAnswer(quizQuestions[questionIndex]?.answer)
   }, [quizQuestions, questionIndex])
@@ -59,7 +58,7 @@ const Quiz = () => {
       <div className="answer">
         <div className="answer-list">
           {answerOptions.map(answerOption => {
-            return <Answer key={answerOption} correct={answerOption === answer} answerOption={answerOption} />
+            return <Answer key={answerOption} correct={answerOption === answer} answerOption={answerOption} numQuestions={quizQuestions.length} />
           })}
         </div>
         <Navigation numQuestions={quizQuestions.length} />
