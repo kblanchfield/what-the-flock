@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=root
+            - MONGO_INITDB_DATABASE=quiz
+        ports:
+            - 27018:27017
+        volumes:
+            - ./artifacts/home/mongodb:/home/mongodb
+            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js

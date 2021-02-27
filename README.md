@@ -7,15 +7,20 @@ A quiz for the weird and wonderful English nouns for flocks of birds.
 
 ## Requirements
 
-* netlify CLI
+* [Docker Desktop](https://www.docker.com/products/docker-desktop)
+* docker-compose
 
 
 ## Develop
 
-Run netlify dev to develop locally
-
+To develop locally, run:
 ```
-netlify build
+make dev
+```
 
-netlify dev
+This starts a dockerised mongodb seeded with a small set of questions and runs the app using `netlify dev`.
+
+To clean up, run:
+```
+make clean
 ```
