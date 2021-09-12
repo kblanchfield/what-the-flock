@@ -12,17 +12,17 @@ const Answer = ({ correct, answerOption, numQuestions }: {
   const { questionIndex, updateQuestionIndex, updateQuestionAnsweredCorrectly } = useContext(questionContext)
 
   const onAnswerSelected = async () => {
-    if (correct) {
-      updateQuestionAnsweredCorrectly(true)
-      await new Promise<void>((resolve) => {
-        setTimeout(() => { resolve() }, 1500)
-      })
+    if (!correct) {
+      return
     }
 
-    if (questionIndex !== numQuestions - 1) {
-      updateQuestionAnsweredCorrectly(false)
-      updateQuestionIndex(questionIndex + 1)
-    }
+    updateQuestionAnsweredCorrectly(true)
+
+    await new Promise<void>((resolve) => {
+      setTimeout(() => { resolve() }, 1500)
+    })
+    updateQuestionAnsweredCorrectly(false)
+    updateQuestionIndex(questionIndex + 1)
   }
 
   return (

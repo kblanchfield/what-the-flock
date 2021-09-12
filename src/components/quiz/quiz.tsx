@@ -10,8 +10,7 @@ import { IQuestion } from "../../models"
 
 
 const Quiz = () => {
-
-  const { questionIndex } = useContext(questionContext)
+  const { questionIndex, updateQuestionIndex } = useContext(questionContext)
   
   const [quizQuestions, setQuizQuestions] = useState<IQuestion[]>([])
   const [bird, setBird] = useState<string>('')
@@ -37,6 +36,7 @@ const Quiz = () => {
 
     if (questionIndex === quizQuestions.length) {
       alert("Game over.")
+      updateQuestionIndex(0)
       return
     }
 
