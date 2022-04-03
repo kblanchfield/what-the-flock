@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e5e886f2-2e1e-404e-aac8-4f5721aedc03/deploy-status)](https://app.netlify.com/sites/priceless-hawking-5b2a08/deploys)
+
 # What the flock
 
 A quiz for the weird and wonderful English nouns for flocks of birds.
